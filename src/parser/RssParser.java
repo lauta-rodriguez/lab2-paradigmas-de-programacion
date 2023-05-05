@@ -1,6 +1,5 @@
 package parser;
 
-import java.io.ByteArrayInputStream;
 import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -24,7 +23,7 @@ public class RssParser extends GeneralParser {
       DocumentBuilder builder = factory.newDocumentBuilder();
 
       //Parse the content to Document object
-      return builder.parse(new InputSource(new ByteArrayInputStream(data.getBytes("utf-8"))));
+      return builder.parse(new InputSource(new StringReader(data)));
     } catch (Exception e) {
       e.printStackTrace();
       System.out.println(e);

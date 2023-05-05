@@ -25,7 +25,7 @@ public class httpRequester {
 	}
 
 	public String getFeedRss(String urlFeed) {
-		String feedRssXml = null;
+		String feedRssXml = "";
 
 		try {
 			URL url = new URL(urlFeed);

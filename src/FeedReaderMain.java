@@ -41,9 +41,9 @@ public class FeedReaderMain {
 					String data = requester.getFeed(url, type);
 
 					/*
-					 * Llamar al Parser especifico para extrar los datos necesarios por la
-					 * aplicacion
-					 */
+					* Llamar al Parser especifico para extrar los datos necesarios por la
+					* aplicacion
+					*/
 					if (type.equals("rss")) {
 						Document xml = new RssParser().parse(data);
 
