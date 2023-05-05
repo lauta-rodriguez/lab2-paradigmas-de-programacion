@@ -17,6 +17,10 @@ public class Subscription {
 		return this.suscriptionsList;
 	}
 
+	public Integer getLength() {
+		return this.suscriptionsList.size();
+	}
+
 	public void addSingleSubscription(SingleSubscription s) {
 		this.suscriptionsList.add(s);
 	}
