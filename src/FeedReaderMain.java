@@ -1,13 +1,9 @@
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
+import java.util.List;
 
 import feed.Article;
 import feed.Feed;
 import httpRequest.httpRequester;
+import parser.RedditParser;
 import parser.RssParser;
 import parser.SubscriptionParser;
 import subscription.SingleSubscription;
@@ -21,16 +17,16 @@ public class FeedReaderMain {
 
 	public static void main(String[] args) {
 		System.out.println("************* FeedReader version 1.0 *************");
-
 		httpRequester requester = new httpRequester();
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 
+		/* Si se llama al programa sin argumentos, se genera el Feed */
 		if (args.length == 0) {
 
-			/* Leer el archivo de suscription por defecto; */
-			Subscription subscription = new SubscriptionParser().parse("config/subscriptions.json");
+			/* Leer el archivo de suscription por defecto */
+			Subscription subscription = new SubscriptionParser()
+					.parse("/home/lautaro/Desktop/tempJava/repo/config/subscriptions.json");
 
-			/* Llamar al httpRequester para obtenr el feed del servidor */
+			/* Llamar al httpRequester para obtener el feed del servidor */
 			for (int i = 0; i < subscription.getLength(); i++) {
 				SingleSubscription single = subscription.getSingleSubscription(i);
 				String type = single.getUrlType();
@@ -41,37 +37,31 @@ public class FeedReaderMain {
 					String data = requester.getFeed(url, type);
 
 					/*
-					* Llamar al Parser especifico para extrar los datos necesarios por la
-					* aplicacion
-					*/
+					 * llamada al Parser especifico para extrar los datos necesarios por la
+					 * aplicacion
+					 */
 					if (type.equals("rss")) {
-						Document xml = new RssParser().parse(data);
 
-						/* Llamar al constructor de Feed */
+						/* llamada al parser de rss */
+						List<Article> articleList = new RssParser().parse(data);
+
+						/* llamada al constructor de Feed */
 						Feed feed = new Feed(url);
-
-						NodeList items = xml.getElementsByTagName("item");
-						for (int k = 0; k < items.getLength(); k++) {
-							String title = xml.getElementsByTagName("title").item(k).getTextContent();
-							String description = xml.getElementsByTagName("description").item(k).getTextContent();
-							String link = xml.getElementsByTagName("link").item(k).getTextContent();
-							String pubDate = xml.getElementsByTagName("pubDate").item(k).getTextContent();
-							Date date = null;
-
-							try {
-								date = dateFormatter.parse(pubDate);
-							} catch (Exception e) {
-								System.out.println("Error: date format not supported");
-							}
-
-							Article article = new Article(title, description, date, link);
-							feed.addArticle(article);
-						}
+						feed.setArticleList(articleList);
 
 						/*
-						 * LLamar al prettyPrint del Feed para ver los articulos del feed en forma
+						 * llamada al prettyPrint del Feed para ver los articulos del feed en forma
 						 * legible y amigable para el usuario
 						 */
+						feed.prettyPrint();
+					} else if (type.equals("reddit")) {
+
+						/* llamada al parser de reddit */
+						List<Article> articleList = new RedditParser().parse(data);
+
+						/* llamada al constructor de Feed */
+						Feed feed = new Feed(url);
+						feed.setArticleList(articleList);
 						feed.prettyPrint();
 					} else {
 						System.out.println("Error: type of feed not supported");
@@ -79,11 +69,15 @@ public class FeedReaderMain {
 				}
 			}
 
-		} else if (args.length == 1) {
-
+		}
+		/*
+		 * Si se llama al programa con el argumento -ne
+		 * se genera el Feed y se computan las entidades nombradas
+		 */
+		else if (args.length == 1) {
 			/*
 			 * Leer el archivo de suscription por defecto;
-			 * Llamar al httpRequester para obtenr el feed del servidor
+			 * Llamar al httpRequester para obtener el feed del servidor
 			 * Llamar al Parser especifico para extrar los datos necesarios por la
 			 * aplicacion
 			 * Llamar al constructor de Feed
