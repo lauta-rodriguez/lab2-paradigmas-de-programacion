@@ -17,8 +17,8 @@ public class httpRequester {
 
 		if (urlType.equals("rss")) {
 			feed = getFeedRss(urlFeed);
-		} else if (urlType.equals("reedit")) {
-			feed = getFeedReedit(urlFeed);
+		} else if (urlType.equals("reddit")) {
+			feed = getFeedReddit(urlFeed);
 		}
 
 		return feed;
@@ -31,10 +31,10 @@ public class httpRequester {
 			URL url = new URL(urlFeed);
 			URLConnection urlConnection = url.openConnection(); // creating a urlconnection object
 
-			// wrapping the urlconnection in a bufferedreader
+			// Wrappea la urlconnection en un bufferedreader
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-			// reading from the urlconnection using the bufferedreader
+			// Lee la respuesta del servidor y la guarda en un String
 			String line;
 			while ((line = bufferedReader.readLine()) != null) {
 				feedRssXml = feedRssXml + line + "\n";
@@ -48,9 +48,32 @@ public class httpRequester {
 		return feedRssXml;
 	}
 
-	public String getFeedReedit(String urlFeed) {
-		String feedReeditJson = null;
-		return feedReeditJson;
+	public String getFeedReddit(String urlFeed) {
+		String feedRedditJson = "";
+
+		try {
+			// Crea un objeto URL con el endpoint de la API de Reddit
+			URL url = new URL(urlFeed);
+
+			// Setea el user agent del request HTTP para evitar un error 429 (Too many
+			// requests)
+			URLConnection connection = url.openConnection();
+			connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+			// Lee la respuesta del servidor y la guarda en un String
+			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				feedRedditJson += line;
+			}
+			reader.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+		}
+
+		return feedRedditJson;
 	}
 
 	public static void main(String[] args) {
