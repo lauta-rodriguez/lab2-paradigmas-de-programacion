@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import namedEntity.NamedEntity;
 import namedEntity.classes.Organization.Organization;
@@ -47,6 +49,22 @@ public class Article {
 		this.text = text;
 		this.publicationDate = publicationDate;
 		this.link = link;
+	}
+
+	private static final Map<String, Class<? extends NamedEntity>> CATEGORY_CLASS_MAP = new HashMap<>();
+
+	static {
+		CATEGORY_CLASS_MAP.put("Apellido", Lastname.class);
+		CATEGORY_CLASS_MAP.put("Nombre", Name.class);
+		CATEGORY_CLASS_MAP.put("Titulo", Title.class);
+		CATEGORY_CLASS_MAP.put("Lugar", Place.class);
+		CATEGORY_CLASS_MAP.put("Ciudad", City.class);
+		CATEGORY_CLASS_MAP.put("Pais", Country.class);
+		CATEGORY_CLASS_MAP.put("Direccion", Address.class);
+		CATEGORY_CLASS_MAP.put("Organizacion", Organization.class);
+		CATEGORY_CLASS_MAP.put("Producto", Product.class);
+		CATEGORY_CLASS_MAP.put("Evento", Event.class);
+		CATEGORY_CLASS_MAP.put("Fecha", CDate.class);
 	}
 
 	public String getTitle() {
@@ -96,52 +114,13 @@ public class Article {
 		return null;
 	}
 
-	// God bleds stupid code. I'm sorry.
 	private NamedEntity generateNamedEntity(String namedEntity, String category)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException, ClassNotFoundException {
-		NamedEntity ne = null;
-		Class<?> action = null;
 
-		// Personas
-		if (category == "Apellido") {
-			action = Lastname.class;
-		} else if (category == "Nombre") {
-			action = Name.class;
-		} else if (category == "Titulo") {
-			action = Title.class;
-		}
-		// Lugares
-		else if (category == "Lugar") {
-			action = Place.class;
-		} else if (category == "Ciudad") {
-			action = City.class;
-		} else if (category == "Pais") {
-			action = Country.class;
-		} else if (category == "Direccion") {
-			action = Address.class;
-		}
-		// Organizacion
-		else if (category == "Organizacion") {
-			action = Organization.class;
-		}
-		// Producto
-		else if (category == "Producto") {
-			action = Product.class;
-		}
-		// Evento
-		else if (category == "Evento") {
-			action = Event.class;
-		}
-		// Fecha
-		else if (category == "Fecha") {
-			action = CDate.class;
-		} else {
-			action = NamedEntity.class;
-		}
-
-		ne = (NamedEntity) action.getDeclaredConstructor(String.class, String.class, int.class).newInstance(namedEntity,
-				category, 1);
+		Class<? extends NamedEntity> action = CATEGORY_CLASS_MAP.getOrDefault(category, NamedEntity.class);
+		NamedEntity ne = action.getDeclaredConstructor(String.class, String.class, int.class)
+				.newInstance(namedEntity, category, 1);
 
 		return ne;
 	}
