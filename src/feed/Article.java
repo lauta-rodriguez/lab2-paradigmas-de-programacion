@@ -156,8 +156,7 @@ public class Article {
 			NoSuchMethodException, ClassNotFoundException {
 		String text = this.getTitle() + " " + this.getText();
 
-		// agregar mas chars ilegales: &,*
-		String charsToRemove = ".,;:()'!?\n";
+		String charsToRemove = ".,;:()'\"!?&*\n";
 		for (char c : charsToRemove.toCharArray()) {
 			text = text.replace(String.valueOf(c), "");
 		}
