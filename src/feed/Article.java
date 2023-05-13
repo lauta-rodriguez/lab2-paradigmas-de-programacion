@@ -67,6 +67,22 @@ public class Article {
 		CATEGORY_CLASS_MAP.put("Fecha", CDate.class);
 	}
 
+	private static final Map<String, Class<? extends Topic>> TOPIC_CLASS_MAP = new HashMap<>();
+
+	static {
+		TOPIC_CLASS_MAP.put("Culture", Culture.class);
+		TOPIC_CLASS_MAP.put("Cine", Cine.class);
+		TOPIC_CLASS_MAP.put("Music", Music.class);
+		TOPIC_CLASS_MAP.put("Politics", Politics.class);
+		TOPIC_CLASS_MAP.put("International", International.class);
+		TOPIC_CLASS_MAP.put("National", National.class);
+		TOPIC_CLASS_MAP.put("Sports", Sports.class);
+		TOPIC_CLASS_MAP.put("Futbol", Futbol.class);
+		TOPIC_CLASS_MAP.put("Basket", Basket.class);
+		TOPIC_CLASS_MAP.put("Tennis", Tennis.class);
+		TOPIC_CLASS_MAP.put("F1", F1.class);
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -128,36 +144,10 @@ public class Article {
 	private Topic generateTopic(String topic)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException, ClassNotFoundException {
-		Topic t = null;
-		Class<?> action = null;
 
-		if (topic == "Culture") {
-			action = Culture.class;
-		} else if (topic == "Cine") {
-			action = Cine.class;
-		} else if (topic == "Music") {
-			action = Music.class;
-		} else if (topic == "Politics") {
-			action = Politics.class;
-		} else if (topic == "International") {
-			action = International.class;
-		} else if (topic == "National") {
-			action = National.class;
-		} else if (topic == "Sports") {
-			action = Sports.class;
-		} else if (topic == "Futbol") {
-			action = Futbol.class;
-		} else if (topic == "Basket") {
-			action = Basket.class;
-		} else if (topic == "Tennis") {
-			action = Tennis.class;
-		} else if (topic == "F1") {
-			action = F1.class;
-		} else {
-			action = Topic.class;
-		}
+		Class<? extends Topic> action = TOPIC_CLASS_MAP.getOrDefault(topic, Topic.class);
+		Topic t = action.getDeclaredConstructor(String.class).newInstance(topic);
 
-		t = (Topic) action.getDeclaredConstructor(String.class).newInstance(topic);
 		return t;
 	}
 
