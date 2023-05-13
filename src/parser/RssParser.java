@@ -21,7 +21,7 @@ import feed.Article;
 /* Esta clase implementa el parser de feed de tipo rss (xml)
  * https://www.tutorialspoint.com/java_xml/java_dom_parse_document.htm 
  * */
-public class RssParser extends GeneralParser {
+public class RssParser extends GeneralParser<List<Article>> {
 
   /* Parsea la fecha en el formato específico de los feeds RSS */
   private static Date parseDate(String pubDate) {
