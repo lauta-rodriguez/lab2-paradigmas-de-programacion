@@ -1,13 +1,16 @@
 package namedEntity;
 
+import theme.Theme;
 
 /*Esta clase modela la nocion de entidad nombrada*/
 
 public class NamedEntity {
 	String name;
-	String category; 
+	String category;
 	int frequency;
-	
+
+	Theme theme;
+
 	public NamedEntity(String name, String category, int frequency) {
 		super();
 		this.name = name;
@@ -43,16 +46,21 @@ public class NamedEntity {
 		this.frequency++;
 	}
 
+	public Theme getTheme() {
+		return theme;
+	}
+
+	public void setTheme(Theme theme) {
+		this.theme = theme;
+	}
+
 	@Override
 	public String toString() {
 		return "ObjectNamedEntity [name=" + name + ", frequency=" + frequency + "]";
 	}
-	public void prettyPrint(){
+
+	public void prettyPrint() {
 		System.out.println(this.getName() + " " + this.getFrequency());
 	}
-	
-	
+
 }
-
-
-
