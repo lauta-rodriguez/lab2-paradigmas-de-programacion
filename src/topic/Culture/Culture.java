@@ -1,6 +1,6 @@
-package theme.Culture;
+package topic.Culture;
 
-public class Culture extends theme.Theme {
+public class Culture extends topic.Topic {
 
   public Culture(String name) {
     super(name);

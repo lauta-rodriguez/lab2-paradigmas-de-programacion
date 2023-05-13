@@ -1,6 +1,6 @@
-package theme.Politics;
+package topic.Politics;
 
-public class Politics extends theme.Theme {
+public class Politics extends topic.Topic {
 
   public Politics(String name) {
     super(name);

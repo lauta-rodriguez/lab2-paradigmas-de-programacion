@@ -1,6 +1,6 @@
 package namedEntity;
 
-import theme.Theme;
+import topic.Topic;
 
 /*Esta clase modela la nocion de entidad nombrada*/
 
@@ -9,7 +9,7 @@ public class NamedEntity {
 	String category;
 	int frequency;
 
-	Theme theme;
+	Topic topic;
 
 	public NamedEntity(String name, String category, int frequency) {
 		super();
@@ -46,12 +46,12 @@ public class NamedEntity {
 		this.frequency++;
 	}
 
-	public Theme getTheme() {
-		return theme;
+	public Topic getTopic() {
+		return topic;
 	}
 
-	public void setTheme(Theme theme) {
-		this.theme = theme;
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 
 	@Override

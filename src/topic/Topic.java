@@ -1,11 +1,11 @@
-package theme;
+package topic;
 
-public class Theme {
+public class Topic {
   private String name = "-";
   private String category = "Otros";
   private String parentCategory = "-";
 
-  public Theme(String name) {
+  public Topic(String name) {
     this.name = name;
   }
 
@@ -30,12 +30,12 @@ public class Theme {
   }
 
   public String StringifyObject() {
-    return "[Theme " + this.getParentCategory() + " " + this.getCategory() + " " + this.getName() + "]";
+    return "[Topic " + this.getParentCategory() + " " + this.getCategory() + " " + this.getName() + "]";
   }
 
   public static void main(String[] args) {
-    Theme theme = new Theme("name");
-    System.out.println(theme.StringifyObject());
+    Topic topic = new Topic("name");
+    System.out.println(topic.StringifyObject());
   }
 
 }

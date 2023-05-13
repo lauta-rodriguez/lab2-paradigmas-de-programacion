@@ -18,18 +18,18 @@ import namedEntity.classes.Place.Country;
 import namedEntity.classes.Product.Product;
 import namedEntity.classes.CDate.CDate;
 import namedEntity.heuristic.Heuristic;
-import theme.Theme;
-import theme.Culture.Cine;
-import theme.Culture.Culture;
-import theme.Culture.Music;
-import theme.Politics.International;
-import theme.Politics.National;
-import theme.Politics.Politics;
-import theme.Sports.Basket;
-import theme.Sports.F1;
-import theme.Sports.Futbol;
-import theme.Sports.Sports;
-import theme.Sports.Tennis;
+import topic.Topic;
+import topic.Culture.Cine;
+import topic.Culture.Culture;
+import topic.Culture.Music;
+import topic.Politics.International;
+import topic.Politics.National;
+import topic.Politics.Politics;
+import topic.Sports.Basket;
+import topic.Sports.F1;
+import topic.Sports.Futbol;
+import topic.Sports.Sports;
+import topic.Sports.Tennis;
 
 /*Esta clase modela el contenido de un articulo (ie, un item en el caso del rss feed) */
 
@@ -146,39 +146,39 @@ public class Article {
 		return ne;
 	}
 
-	private Theme generateTheme(String theme)
+	private Topic generateTopic(String topic)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException, ClassNotFoundException {
-		Theme t = null;
+		Topic t = null;
 		Class<?> action = null;
 
-		if (theme == "Culture") {
+		if (topic == "Culture") {
 			action = Culture.class;
-		} else if (theme == "Cine") {
+		} else if (topic == "Cine") {
 			action = Cine.class;
-		} else if (theme == "Music") {
+		} else if (topic == "Music") {
 			action = Music.class;
-		} else if (theme == "Politics") {
+		} else if (topic == "Politics") {
 			action = Politics.class;
-		} else if (theme == "International") {
+		} else if (topic == "International") {
 			action = International.class;
-		} else if (theme == "National") {
+		} else if (topic == "National") {
 			action = National.class;
-		} else if (theme == "Sports") {
+		} else if (topic == "Sports") {
 			action = Sports.class;
-		} else if (theme == "Futbol") {
+		} else if (topic == "Futbol") {
 			action = Futbol.class;
-		} else if (theme == "Basket") {
+		} else if (topic == "Basket") {
 			action = Basket.class;
-		} else if (theme == "Tennis") {
+		} else if (topic == "Tennis") {
 			action = Tennis.class;
-		} else if (theme == "F1") {
+		} else if (topic == "F1") {
 			action = F1.class;
 		} else {
-			action = Theme.class;
+			action = Topic.class;
 		}
 
-		t = (Theme) action.getDeclaredConstructor(String.class).newInstance(theme);
+		t = (Topic) action.getDeclaredConstructor(String.class).newInstance(topic);
 		return t;
 	}
 
@@ -187,6 +187,7 @@ public class Article {
 			NoSuchMethodException, ClassNotFoundException {
 		String text = this.getTitle() + " " + this.getText();
 
+		// agregar mas chars ilegales: &,*
 		String charsToRemove = ".,;:()'!?\n";
 		for (char c : charsToRemove.toCharArray()) {
 			text = text.replace(String.valueOf(c), "");
@@ -199,8 +200,8 @@ public class Article {
 				if (ne == null) {
 					ne = this.generateNamedEntity(s, h.getCategory(s));
 
-					Theme t = this.generateTheme(h.getTheme(s));
-					ne.setTheme(t);
+					Topic t = this.generateTopic(h.getTopic(s));
+					ne.setTopic(t);
 
 					this.namedEntityList.add(ne);
 				} else {

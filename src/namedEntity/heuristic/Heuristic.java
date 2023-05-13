@@ -26,7 +26,7 @@ public abstract class Heuristic {
 		return "Other";
 	}
 
-	public String getTheme(String entity) {
+	public String getTopic(String entity) {
 		String[] category = categoryMap.get(entity);
 
 		if (category != null) {

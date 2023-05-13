@@ -1,6 +1,6 @@
-package theme.Sports;
+package topic.Sports;
 
-public class Sports extends theme.Theme {
+public class Sports extends topic.Topic {
 
   public Sports(String name) {
     super(name);

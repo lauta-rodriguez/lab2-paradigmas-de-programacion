@@ -1,4 +1,4 @@
-package theme.Culture;
+package topic.Culture;
 
 public class Cine extends Culture {
 

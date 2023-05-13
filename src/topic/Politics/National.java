@@ -1,4 +1,4 @@
-package theme.Politics;
+package topic.Politics;
 
 public class National extends Politics {
 

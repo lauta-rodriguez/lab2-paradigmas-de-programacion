@@ -1,4 +1,4 @@
-package theme.Sports;
+package topic.Sports;
 
 public class Tennis extends Sports {
 
