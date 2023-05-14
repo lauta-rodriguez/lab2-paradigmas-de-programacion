@@ -163,8 +163,11 @@ public class Article {
 
 		for (String s : text.split(" ")) {
 			if (h.isEntity(s)) {
+				// ver si la entidad nombrada ya se encuentra en las entidades
+				// de este articulo
 				NamedEntity ne = this.getNamedEntity(s);
 
+				// si no esta, se genera la entidad nombrada y el topic correspondiente
 				if (ne == null) {
 					ne = this.generateNamedEntity(s, h.getCategory(s));
 
@@ -172,7 +175,7 @@ public class Article {
 					ne.setTopic(t);
 
 					this.namedEntityList.add(ne);
-				} else {
+				} else { // si esta, incrementa su contador de ocurrencias
 					ne.incrementFrequency();
 					ne.getTopic().incrementFrequency();
 				}
