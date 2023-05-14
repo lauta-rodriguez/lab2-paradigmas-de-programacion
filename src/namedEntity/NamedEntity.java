@@ -7,7 +7,7 @@ import topic.Topic;
 public class NamedEntity {
 	String name;
 	String category;
-	int frequency;
+	private static int frequency = 0;
 
 	Topic topic;
 
@@ -38,12 +38,8 @@ public class NamedEntity {
 		return frequency;
 	}
 
-	public void setFrequency(int frequency) {
-		this.frequency = frequency;
-	}
-
-	public void incFrequency() {
-		this.frequency++;
+	public void incrementFrequency() {
+		frequency++;
 	}
 
 	public Topic getTopic() {
