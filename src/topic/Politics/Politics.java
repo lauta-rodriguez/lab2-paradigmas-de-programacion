@@ -9,7 +9,7 @@ public class Politics extends topic.Topic {
     frequency++;
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 

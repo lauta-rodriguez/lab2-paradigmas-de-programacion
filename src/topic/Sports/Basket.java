@@ -10,7 +10,7 @@ public class Basket extends Sports {
     frequency++;
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 

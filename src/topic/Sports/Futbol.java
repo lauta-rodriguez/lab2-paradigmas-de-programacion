@@ -9,7 +9,7 @@ public class Futbol extends Sports {
     this.setParentCategory("Sports");
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 

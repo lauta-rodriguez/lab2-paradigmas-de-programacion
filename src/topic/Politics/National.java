@@ -10,7 +10,7 @@ public class National extends Politics {
     frequency++;
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 

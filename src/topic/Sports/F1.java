@@ -10,7 +10,7 @@ public class F1 extends Sports {
     frequency++;
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 

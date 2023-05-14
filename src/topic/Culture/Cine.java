@@ -10,7 +10,7 @@ public class Cine extends Culture {
     frequency++;
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 
