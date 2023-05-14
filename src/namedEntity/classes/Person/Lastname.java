@@ -5,8 +5,21 @@ public class Lastname extends Person {
   private String canonicalForm;
   private String origin;
 
-  public Lastname(String name, String category, int frequency) {
-    super(name, category, frequency);
+  private static int frequency = 0;
+
+  public Lastname(String name, String category) {
+    super(name, category);
+    frequency++;
+  }
+
+  public int getFrequency() {
+    return frequency;
+  }
+
+  @Override
+  public void incrementFrequency() {
+    super.incrementFrequency();
+    frequency++;
   }
 
   public String getCanonicalForm() {

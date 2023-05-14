@@ -6,8 +6,21 @@ public class City extends Place {
   private String capital;
   private String country;
 
-  public City(String name, String category, int frequency) {
-    super(name, category, frequency);
+  private static int frequency = 0;
+
+  public City(String name, String category) {
+    super(name, category);
+    frequency++;
+  }
+
+  public int getFrequency() {
+    return frequency;
+  }
+
+  @Override
+  public void incrementFrequency() {
+    super.incrementFrequency();
+    frequency++;
   }
 
   public int getPopulation() {

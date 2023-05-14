@@ -4,8 +4,21 @@ public class Address extends Place {
 
   private String city;
 
-  public Address(String name, String category, int frequency) {
-    super(name, category, frequency);
+  private static int frequency = 0;
+
+  public Address(String name, String category) {
+    super(name, category);
+    frequency++;
+  }
+
+  public int getFrequency() {
+    return frequency;
+  }
+
+  @Override
+  public void incrementFrequency() {
+    super.incrementFrequency();
+    frequency++;
   }
 
   public String getCity() {

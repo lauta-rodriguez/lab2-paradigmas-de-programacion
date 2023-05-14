@@ -6,8 +6,21 @@ public class Name extends Person {
   private String origin;
   private String[] variants;
 
-  public Name(String name, String category, int frequency) {
-    super(name, category, frequency);
+  private static int frequency = 0;
+
+  public Name(String name, String category) {
+    super(name, category);
+    frequency++;
+  }
+
+  public int getFrequency() {
+    return frequency;
+  }
+
+  @Override
+  public void incrementFrequency() {
+    super.incrementFrequency();
+    frequency++;
   }
 
   public String getCanonicalForm() {

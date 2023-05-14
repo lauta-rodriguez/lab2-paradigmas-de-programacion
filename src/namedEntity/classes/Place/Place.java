@@ -3,9 +3,22 @@ package namedEntity.classes.Place;
 public class Place extends namedEntity.NamedEntity {
 
   private String id;
-  
-  public Place(String name, String category, int frequency) {
-    super(name, category, frequency);
+
+  private static int frequency = 0;
+
+  public Place(String name, String category) {
+    super(name, category);
+    frequency++;
+  }
+
+  public int getFrequency() {
+    return frequency;
+  }
+
+  @Override
+  public void incrementFrequency() {
+    super.incrementFrequency();
+    frequency++;
   }
 
   public String getId() {

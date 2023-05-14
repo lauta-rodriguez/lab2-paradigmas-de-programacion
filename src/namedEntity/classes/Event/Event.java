@@ -9,8 +9,21 @@ public class Event extends namedEntity.NamedEntity {
   private Date date;
   private boolean recurrent;
 
-  public Event(String name, String category, int frequency) {
-    super(name, category, frequency);
+  private static int frequency = 0;
+
+  public Event(String name, String category) {
+    super(name, category);
+    frequency++;
+  }
+
+  public int getFrequency() {
+    return frequency;
+  }
+
+  @Override
+  public void incrementFrequency() {
+    super.incrementFrequency();
+    frequency++;
   }
 
   public String getCanonicalForm() {
