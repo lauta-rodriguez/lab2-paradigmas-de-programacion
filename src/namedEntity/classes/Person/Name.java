@@ -13,7 +13,7 @@ public class Name extends Person {
     frequency++;
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 
@@ -49,6 +49,6 @@ public class Name extends Person {
 
   @Override
   public void prettyPrint() {
-    System.out.println("Person Name: " + this.getName() + " " + this.getFrequency());
+    System.out.println("Person Name: " + this.getName() + " " + getFrequency());
   }
 }

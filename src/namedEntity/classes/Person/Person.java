@@ -11,9 +11,10 @@ public class Person extends NamedEntity {
   public Person(String name, String category) {
     super(name, category);
     frequency++;
+    System.out.println(name + category);
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 
@@ -33,6 +34,6 @@ public class Person extends NamedEntity {
 
   @Override
   public void prettyPrint() {
-    System.out.println("Person: " + this.getName() + " " + this.getFrequency());
+    System.out.println("Person: " + this.getName() + " " + getFrequency());
   }
 }

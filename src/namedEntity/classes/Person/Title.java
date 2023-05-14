@@ -12,7 +12,7 @@ public class Title extends Person {
     frequency++;
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 
@@ -40,6 +40,6 @@ public class Title extends Person {
 
   @Override
   public void prettyPrint() {
-    System.out.println("Person Title: " + this.getName() + " " + this.getFrequency());
+    System.out.println("Person Title: " + this.getName() + " " + getFrequency());
   }
 }

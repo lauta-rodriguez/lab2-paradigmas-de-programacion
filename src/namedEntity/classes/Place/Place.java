@@ -11,7 +11,7 @@ public class Place extends namedEntity.NamedEntity {
     frequency++;
   }
 
-  public int getFrequency() {
+  public static int getFrequency() {
     return frequency;
   }
 
@@ -31,6 +31,6 @@ public class Place extends namedEntity.NamedEntity {
 
   @Override
   public void prettyPrint() {
-    System.out.println("Lugar: " + this.getName() + " " + this.getFrequency());
+    System.out.println("Lugar: " + this.getName() + " " + getFrequency());
   }
 }

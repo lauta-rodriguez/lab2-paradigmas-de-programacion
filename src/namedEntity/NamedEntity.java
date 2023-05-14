@@ -34,7 +34,7 @@ public class NamedEntity {
 		this.name = name;
 	}
 
-	public int getFrequency() {
+	public static int getFrequency() {
 		return frequency;
 	}
 
@@ -56,7 +56,7 @@ public class NamedEntity {
 	}
 
 	public void prettyPrint() {
-		System.out.println(this.getName() + " " + this.getFrequency());
+		System.out.println(this.getName() + " " + getFrequency());
 	}
 
 }
