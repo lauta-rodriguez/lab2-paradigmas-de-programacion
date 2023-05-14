@@ -173,7 +173,8 @@ public class Article {
 
 					this.namedEntityList.add(ne);
 				} else {
-					ne.incFrequency();
+					ne.incrementFrequency();
+					ne.getTopic().incrementFrequency();
 				}
 			}
 		}
