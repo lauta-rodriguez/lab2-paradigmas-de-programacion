@@ -11,11 +11,11 @@ public class NamedEntity {
 
 	Topic topic;
 
-	public NamedEntity(String name, String category, int frequency) {
+	public NamedEntity(String name, String category) {
 		super();
 		this.name = name;
 		this.category = category;
-		this.frequency = frequency;
+		frequency++;
 	}
 
 	public String getName() {
