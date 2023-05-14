@@ -5,9 +5,20 @@ public class Topic {
   private String category = "Otros";
   private String parentCategory = "-";
 
+  private static int frequency = 0;
+
   public Topic(String name) {
     this.name = name;
+    frequency++;
   }
+
+  public int getFrequency() {
+    return frequency;
+  }
+
+  public void incrementFrequency() {
+		frequency++;
+	}
 
   public String getName() {
     return this.name;
