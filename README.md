@@ -120,3 +120,24 @@ public List<Article> parse(String data)
 ```
 
 # Parte 2: Identificación y clasificación de entidades nombradas
+
+Analizamos cada artículo del Feed y computamos un conjunto de entidades nombradas mediante una heurística en cada uno de ellos.
+
+Para modelar las entidades nombradas utilizamos una clase NamedEntity que contiene **nombre**, **categoría** y **categoría madre**.
+
+Clasificamos a las entidades nombradas según dos jerarquías, una que representa la categorización básica de las entidades nombradas y
+otra que a cada entidad nombrada la relaciona con un tema (Topic).
+
+Mostramos por pantalla el nombre de la entidad nombrada y dos tuplas que se corresponden con la primera y segunda jerarquía respectivamente, acompañadas de la cantidad de veces que aparece cada subclase (que representa el último nivel en su respectiva jerarquía) en el Feed.
+
+| Nombre     | Jerarquia basica |     Tema     |
+| ---------- | :--------------: | :----------: |
+| Week:      |   (Otros, 591)   | (Otros, 591) |
+| Trump:     |  (Lastname, 10)  | (Otros, 591) |
+| TV:        |   (Otros, 591)   | (Otros, 591) |
+| Inflation: |   (Otros, 591)   | (Otros, 591) |
+| Elon:      |   (Otros, 591)   | (Otros, 591) |
+| Musk:      |    (Name, 4)     | (Otros, 591) |
+| CEO:       |   (Otros, 591)   | (Otros, 591) |
+| Twitter:   |   (Otros, 591)   | (Otros, 591) |
+| Senate:    |   (Otros, 591)   | (Otros, 591) |
