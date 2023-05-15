@@ -82,7 +82,7 @@ public class FeedReaderMain {
 		 * Si se llama al programa con el argumento -ne
 		 * se genera el Feed y se computan las entidades nombradas
 		 */
-		else if (args.length == 1) {
+		else { // args.length == 1
 			/* Llamar al httpRequester para obtener el feed del servidor */
 			for (int i = 0; i < subscription.getLength(); i++) {
 				SingleSubscription single = subscription.getSingleSubscription(i);
@@ -133,8 +133,6 @@ public class FeedReaderMain {
 					continue;
 				}
 			}
-		} else {
-			printHelp();
 		}
 	}
 
