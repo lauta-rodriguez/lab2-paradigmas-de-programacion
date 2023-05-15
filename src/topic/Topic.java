@@ -2,8 +2,8 @@ package topic;
 
 public class Topic {
   private String name = "-";
-  private String category = "Otros";
-  private String parentCategory = "-";
+  private String category = "Other";
+  private String parentCategory = "Topic";
 
   private static int frequency = 0;
 

@@ -11,7 +11,6 @@ public class CDate extends namedEntity.NamedEntity {
   public CDate(String name) {
     super(name);
     this.setCategory("CDate");
-    this.setParentCategory("NamedEntity");
     frequency++;
   }
 

@@ -6,8 +6,8 @@ import topic.Topic;
 
 public class NamedEntity {
 	String name;
-	private String category = "Otros";
-	private String parentCategory = "Entidad Nombrada";
+	private String category = "Other";
+	private String parentCategory = "Named Entity";
 
 	private static int frequency = 0;
 

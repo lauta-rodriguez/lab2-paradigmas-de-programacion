@@ -9,7 +9,6 @@ public class Product extends namedEntity.NamedEntity {
   public Product(String name) {
     super(name);
     this.setCategory("Product");
-    this.setParentCategory("NamedEntity");
     frequency++;
   }
 

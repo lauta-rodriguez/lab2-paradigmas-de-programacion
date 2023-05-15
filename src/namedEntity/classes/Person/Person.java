@@ -11,7 +11,6 @@ public class Person extends NamedEntity {
   public Person(String name) {
     super(name);
     this.setCategory("Person");
-    this.setParentCategory("NamedEntity");
     frequency++;
   }
 

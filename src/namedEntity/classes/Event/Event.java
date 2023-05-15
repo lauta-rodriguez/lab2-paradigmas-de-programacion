@@ -14,7 +14,6 @@ public class Event extends namedEntity.NamedEntity {
   public Event(String name) {
     super(name);
     this.setCategory("Event");
-    this.setParentCategory("NamedEntity");
     frequency++;
   }
 
