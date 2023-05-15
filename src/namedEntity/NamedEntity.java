@@ -27,11 +27,11 @@ public class NamedEntity {
 	}
 
 	public String getCategory() {
-		return name;
+		return category;
 	}
 
-	public void setCategory(String name) {
-		this.name = name;
+	protected void setCategory(String category) {
+		this.category = category;
 	}
 
 	public static int getFrequency() {
