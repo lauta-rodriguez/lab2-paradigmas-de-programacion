@@ -37,4 +37,8 @@ public class Country extends Place {
   public void setOficialLanguage(String oficialLanguage) {
     this.oficialLanguage = oficialLanguage;
   }
+
+  public String StringifyObject() {
+		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
+	}
 }

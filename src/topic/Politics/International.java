@@ -19,4 +19,8 @@ public class International extends Politics {
     super.incrementFrequency();
     frequency++;
   }
+
+  public String StringifyObject() {
+    return "(" + this.getCategory() + ", " + getFrequency() + ")]";
+  }
 }

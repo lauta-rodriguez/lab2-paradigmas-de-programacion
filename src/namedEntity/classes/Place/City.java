@@ -46,4 +46,8 @@ public class City extends Place {
   public void setCountry(String country) {
     this.country = country;
   }
+
+  public String StringifyObject() {
+		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
+	}
 }

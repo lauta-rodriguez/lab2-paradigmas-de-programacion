@@ -20,4 +20,8 @@ public class F1 extends Sports {
     frequency++;
   }
 
+  public String StringifyObject() {
+    return "(" + this.getCategory() + ", " + getFrequency() + ")]";
+  }
+
 }

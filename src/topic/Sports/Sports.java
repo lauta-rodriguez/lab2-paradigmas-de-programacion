@@ -18,4 +18,8 @@ public class Sports extends topic.Topic {
     super.incrementFrequency();
     frequency++;
   }
+
+  public String StringifyObject() {
+    return "(" + this.getCategory() + ", " + getFrequency() + ")]";
+  }
 }

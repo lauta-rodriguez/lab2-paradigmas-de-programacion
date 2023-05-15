@@ -28,4 +28,8 @@ public class Address extends Place {
   public void setCity(String city) {
     this.city = city;
   }
+
+  public String StringifyObject() {
+		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
+	}
 }

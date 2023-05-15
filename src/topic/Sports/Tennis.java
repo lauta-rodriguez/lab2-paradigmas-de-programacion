@@ -20,4 +20,8 @@ public class Tennis extends Sports {
     frequency++;
   }
 
+  public String StringifyObject() {
+    return "(" + this.getCategory() + ", " + getFrequency() + ")]";
+  }
+
 }

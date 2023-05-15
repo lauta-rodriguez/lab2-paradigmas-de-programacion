@@ -41,7 +41,7 @@ public class Topic {
   }
 
   public String StringifyObject() {
-    return "[Topic " + this.getParentCategory() + " " + this.getCategory() + " " + this.getName() + "]";
+    return "(" + this.getCategory() + ", " + getFrequency() + ")]";
   }
 
   public static void main(String[] args) {

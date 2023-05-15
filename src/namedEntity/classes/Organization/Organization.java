@@ -45,4 +45,8 @@ public class Organization extends namedEntity.NamedEntity {
   public void setType(String type) {
     this.type = type;
   }
+
+  public String StringifyObject() {
+		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
+	}
 }

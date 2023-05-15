@@ -42,4 +42,8 @@ public class Title extends Person {
   public void prettyPrint() {
     System.out.println("Person Title: " + this.getName() + " " + getFrequency());
   }
+
+  public String StringifyObject() {
+		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
+	}
 }

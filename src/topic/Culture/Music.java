@@ -19,4 +19,8 @@ public class Music extends Culture {
     super.incrementFrequency();
     frequency++;
   }
+
+  public String StringifyObject() {
+    return "(" + this.getCategory() + ", " + getFrequency() + ")]";
+  }
 }

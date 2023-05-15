@@ -36,4 +36,8 @@ public class Product extends namedEntity.NamedEntity {
   public void setProductor(String productor) {
     this.productor = productor;
   }
+
+	public String StringifyObject() {
+		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
+	}
 }

@@ -33,4 +33,8 @@ public class Place extends namedEntity.NamedEntity {
   public void prettyPrint() {
     System.out.println("Lugar: " + this.getName() + " " + getFrequency());
   }
+
+  public String StringifyObject() {
+		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
+	}
 }

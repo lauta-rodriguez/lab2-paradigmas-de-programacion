@@ -19,4 +19,8 @@ public class Basket extends Sports {
     super.incrementFrequency();
     frequency++;
   }
+
+  public String StringifyObject() {
+    return "(" + this.getCategory() + ", " + getFrequency() + ")]";
+  }
 }

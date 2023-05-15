@@ -55,6 +55,10 @@ public class NamedEntity {
 		return "ObjectNamedEntity [name=" + name + ", frequency=" + frequency + "]";
 	}
 
+	public String StringifyObject() {
+		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
+	}
+
 	public void prettyPrint() {
 		System.out.println(this.getName() + " " + getFrequency());
 	}
