@@ -121,16 +121,15 @@ public class FeedReaderMain {
 					 */
 					for (int k = 0; k < articleList.size(); k++) {
 						try {
+							/* Imprime las entidades nombradas*/
+							System.out
+								.println("**********************************************************************************************");
+							System.out.println("Article: " + articleList.get(k).getTitle());
 							articleList.get(k).computeNamedEntities(heuristic);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
-
-					/*
-					 * Llamar al prettyPrint de la tabla de entidades nombradas del feed.
-					 */
-					feed.prettyPrintNamedEntities();
 					continue;
 				}
 			}
