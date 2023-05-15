@@ -23,6 +23,12 @@ public class FeedReaderMain {
 	}
 
 	public static void main(String[] args) {
+
+		if (args.length > 1 || (args.length == 1 && !args[0].equals("-ne"))) {
+			printHelp();
+			return;
+		}
+
 		System.out.println("************* FeedReader version 1.0 *************");
 		httpRequester requester = new httpRequester();
 
