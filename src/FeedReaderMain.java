@@ -1,13 +1,20 @@
 import java.util.List;
 
+import httpRequest.httpRequester;
+
 import feed.Article;
 import feed.Feed;
-import httpRequest.httpRequester;
+
+import parser.GeneralParser;
 import parser.RedditParser;
 import parser.RssParser;
 import parser.SubscriptionParser;
+
 import subscription.SingleSubscription;
 import subscription.Subscription;
+
+import namedEntity.heuristic.Heuristic;
+import namedEntity.heuristic.QuickHeuristic;
 
 public class FeedReaderMain {
 
@@ -16,56 +23,57 @@ public class FeedReaderMain {
 	}
 
 	public static void main(String[] args) {
+
+		if (args.length > 1 || (args.length == 1 && !args[0].equals("-ne"))) {
+			printHelp();
+			return;
+		}
+
 		System.out.println("************* FeedReader version 1.0 *************");
 		httpRequester requester = new httpRequester();
 
+		/* Leer el archivo de suscription por defecto */
+		Subscription subscription = new SubscriptionParser()
+				.parse("config/subscriptions.json");
+
 		/* Si se llama al programa sin argumentos, se genera el Feed */
 		if (args.length == 0) {
-
-			/* Leer el archivo de suscription por defecto */
-			Subscription subscription = new SubscriptionParser()
-					.parse("/home/lautaro/Desktop/tempJava/repo/config/subscriptions.json");
 
 			/* Llamar al httpRequester para obtener el feed del servidor */
 			for (int i = 0; i < subscription.getLength(); i++) {
 				SingleSubscription single = subscription.getSingleSubscription(i);
 				String type = single.getUrlType();
 				String rawUrl = single.getUrl();
+				GeneralParser<List<Article>> feedParser = null;
+
+				/*
+				 * llamada al Parser especifico para extrar los datos necesarios por la
+				 * aplicacion
+				 */
+				if (type.equals("rss")) {
+					feedParser = new RssParser();
+				} else if (type.equals("reddit")) {
+					feedParser = new RedditParser();
+				} else {
+					System.out.println("Error: type of feed not supported");
+					continue;
+				}
 
 				for (int j = 0; j < single.getUlrParamsSize(); j++) {
 					String url = rawUrl.replace("%s", single.getUlrParams(j));
 					String data = requester.getFeed(url, type);
 
+					List<Article> articleList = feedParser.parse(data);
+
+					/* llamada al constructor de Feed */
+					Feed feed = new Feed(url);
+					feed.setArticleList(articleList);
+
 					/*
-					 * llamada al Parser especifico para extrar los datos necesarios por la
-					 * aplicacion
+					 * llamada al prettyPrint del Feed para ver los articulos del feed en forma
+					 * legible y amigable para el usuario
 					 */
-					if (type.equals("rss")) {
-
-						/* llamada al parser de rss */
-						List<Article> articleList = new RssParser().parse(data);
-
-						/* llamada al constructor de Feed */
-						Feed feed = new Feed(url);
-						feed.setArticleList(articleList);
-
-						/*
-						 * llamada al prettyPrint del Feed para ver los articulos del feed en forma
-						 * legible y amigable para el usuario
-						 */
-						feed.prettyPrint();
-					} else if (type.equals("reddit")) {
-
-						/* llamada al parser de reddit */
-						List<Article> articleList = new RedditParser().parse(data);
-
-						/* llamada al constructor de Feed */
-						Feed feed = new Feed(url);
-						feed.setArticleList(articleList);
-						feed.prettyPrint();
-					} else {
-						System.out.println("Error: type of feed not supported");
-					}
+					feed.prettyPrint();
 				}
 			}
 
@@ -75,17 +83,57 @@ public class FeedReaderMain {
 		 * se genera el Feed y se computan las entidades nombradas
 		 */
 		else if (args.length == 1) {
-			/*
-			 * Leer el archivo de suscription por defecto;
-			 * Llamar al httpRequester para obtener el feed del servidor
-			 * Llamar al Parser especifico para extrar los datos necesarios por la
-			 * aplicacion
-			 * Llamar al constructor de Feed
-			 * Llamar a la heuristica para que compute las entidades nombradas de cada
-			 * articulos del feed
-			 * LLamar al prettyPrint de la tabla de entidades nombradas del feed.
-			 */
+			/* Llamar al httpRequester para obtener el feed del servidor */
+			for (int i = 0; i < subscription.getLength(); i++) {
+				SingleSubscription single = subscription.getSingleSubscription(i);
+				String type = single.getUrlType();
+				String rawUrl = single.getUrl();
 
+				GeneralParser<List<Article>> feedParser = null;
+				Heuristic heuristic = new QuickHeuristic();
+
+				/*
+				 * llamada al Parser especifico para extrar los datos necesarios por la
+				 * aplicacion
+				 */
+				if (type.equals("rss")) {
+					feedParser = new RssParser();
+				} else if (type.equals("reddit")) {
+					feedParser = new RedditParser();
+				} else {
+					System.out.println("Error: type of feed not supported");
+					continue;
+				}
+
+				for (int j = 0; j < single.getUlrParamsSize(); j++) {
+					String url = rawUrl.replace("%s", single.getUlrParams(j));
+					String data = requester.getFeed(url, type);
+
+					List<Article> articleList = feedParser.parse(data);
+
+					/* llamada al constructor de Feed */
+					Feed feed = new Feed(url);
+					feed.setArticleList(articleList);
+
+					/*
+					 * Llamar a la heuristica para que compute las entidades nombradas de cada
+					 * articulos del feed
+					 */
+					for (int k = 0; k < articleList.size(); k++) {
+						try {
+							articleList.get(k).computeNamedEntities(heuristic);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+
+					/*
+					 * Llamar al prettyPrint de la tabla de entidades nombradas del feed.
+					 */
+					feed.prettyPrintNamedEntities();
+					continue;
+				}
+			}
 		} else {
 			printHelp();
 		}

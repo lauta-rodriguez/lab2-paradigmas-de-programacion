@@ -55,6 +55,12 @@ public class Feed {
 		}
 		
 	}
+
+	public void prettyPrintNamedEntities(){
+		for (Article a: this.getArticleList()){
+			a.prettyPrintNamedEntities();
+		}
+	}
 	
 	public static void main(String[] args) {
 		  Article a1 = new Article("This Historically Black University Created Its Own Tech Intern Pipeline",

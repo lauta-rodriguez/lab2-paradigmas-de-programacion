@@ -11,7 +11,9 @@ import org.json.JSONException;
 
 /* Esta clase se encarga de parsear los resultados del httpRequester en una lista de articulos
  * */
-public class RedditParser extends GeneralParser {
+public class RedditParser extends GeneralParser<List<Article>> {
+
+    private static final int MAX_CHARS = 80;
 
     /*
      * Este metodo genera articulos dado un post
@@ -21,34 +23,38 @@ public class RedditParser extends GeneralParser {
         String title = postJson.getString("title");
         String text = postJson.getString("selftext");
 
-        // limita la descripcion a 80 caracteres
+        // limita la descripcion a RedditParser.MAX_CHARS caracteres
         // considerando palabras completas
         String[] sentences = text.split("\\.");
         String description = sentences[0];
-        if (description.length() > 80) {
-            int lastSpaceIndex = description.lastIndexOf(' ', 80);
-            if (lastSpaceIndex != -1) {
-                description = description.substring(0, lastSpaceIndex);
-            } else {
-                description = description.substring(0, 80);
+
+        if (description.length() > RedditParser.MAX_CHARS) {
+            int lastSpaceIndex = description.lastIndexOf(' ', RedditParser.MAX_CHARS);
+
+            if (lastSpaceIndex == -1) {
+                lastSpaceIndex = RedditParser.MAX_CHARS;
             }
+
+            description = description.substring(0, lastSpaceIndex);
         }
+
         if (sentences.length > 1) {
             String secondSentence = sentences[1];
-            if (secondSentence.length() > 80) {
-                int lastSpaceIndex = secondSentence.lastIndexOf(' ', 80);
-                if (lastSpaceIndex != -1) {
-                    secondSentence = secondSentence.substring(0, lastSpaceIndex);
-                } else {
-                    secondSentence = secondSentence.substring(0, 80);
+
+            if (secondSentence.length() > RedditParser.MAX_CHARS) {
+                int lastSpaceIndex = secondSentence.lastIndexOf(' ', RedditParser.MAX_CHARS);
+
+                if (lastSpaceIndex == -1) {
+                    lastSpaceIndex = RedditParser.MAX_CHARS;
                 }
-                description += ". " + secondSentence + "...";
-            } else {
-                description += ". " + secondSentence + "...";
+
+                secondSentence = secondSentence.substring(0, lastSpaceIndex);
             }
-        } else {
-            description += "...";
+
+            description += ". " + secondSentence;
         }
+
+        description += "...";
 
         String link = "https://www.reddit.com" + postJson.getString("permalink");
         Date date = new Date(postJson.getLong("created_utc") * 1000);

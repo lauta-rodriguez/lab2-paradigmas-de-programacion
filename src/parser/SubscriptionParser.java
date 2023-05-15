@@ -16,7 +16,7 @@ import subscription.Subscription;
  * Leer https://www.w3docs.com/snippets/java/how-to-parse-json-in-java.html
  * */
 
-public class SubscriptionParser extends GeneralParser {
+public class SubscriptionParser extends GeneralParser<Subscription> {
 
     /*
      * Este metodo parsea un objeto json y devuelve un objeto SingleSubscription

@@ -1,18 +1,22 @@
 package namedEntity;
 
+import topic.Topic;
 
 /*Esta clase modela la nocion de entidad nombrada*/
 
 public class NamedEntity {
 	String name;
-	String category; 
-	int frequency;
-	
-	public NamedEntity(String name, String category, int frequency) {
+	private String category = "Otros";
+	private String parentCategory = "Entidad Nombrada";
+
+	private static int frequency = 0;
+
+	Topic topic;
+
+	public NamedEntity(String name) {
 		super();
 		this.name = name;
-		this.category = category;
-		this.frequency = frequency;
+		frequency++;
 	}
 
 	public String getName() {
@@ -24,35 +28,48 @@ public class NamedEntity {
 	}
 
 	public String getCategory() {
-		return name;
+		return category;
 	}
 
-	public void setCategory(String name) {
-		this.name = name;
+	protected void setCategory(String category) {
+		this.category = category;
 	}
 
-	public int getFrequency() {
+	public static int getFrequency() {
 		return frequency;
 	}
 
-	public void setFrequency(int frequency) {
-		this.frequency = frequency;
+	public void incrementFrequency() {
+		frequency++;
 	}
 
-	public void incFrequency() {
-		this.frequency++;
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
+
+	protected void setParentCategory(String parentCategory) {
+		this.parentCategory = parentCategory;
+	}
+
+	protected String getParentCategory() {
+		return this.parentCategory;
 	}
 
 	@Override
 	public String toString() {
 		return "ObjectNamedEntity [name=" + name + ", frequency=" + frequency + "]";
 	}
-	public void prettyPrint(){
-		System.out.println(this.getName() + " " + this.getFrequency());
+
+	public String StringifyObject() {
+		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
 	}
-	
-	
+
+	public void prettyPrint() {
+		System.out.println(this.getName() + " " + getFrequency());
+	}
+
 }
-
-
-
