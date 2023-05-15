@@ -7,8 +7,10 @@ public class Organization extends namedEntity.NamedEntity {
 
   private static int frequency = 0;
 
-  public Organization(String name, String category) {
-    super(name, category);
+  public Organization(String name) {
+    super(name);
+    this.setCategory("Organization");
+    this.setParentCategory("NamedEntity");
     frequency++;
   }
 

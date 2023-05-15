@@ -8,8 +8,10 @@ public class CDate extends namedEntity.NamedEntity {
 
   private static int frequency = 0;
 
-  public CDate(String name, String category) {
-    super(name, category);
+  public CDate(String name) {
+    super(name);
+    this.setCategory("CDate");
+    this.setParentCategory("NamedEntity");
     frequency++;
   }
 

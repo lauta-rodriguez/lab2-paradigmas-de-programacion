@@ -7,8 +7,10 @@ public class Lastname extends Person {
 
   private static int frequency = 0;
 
-  public Lastname(String name, String category) {
-    super(name, category);
+  public Lastname(String name) {
+    super(name);
+    this.setCategory("Lastname");
+    this.setParentCategory("Person");
     frequency++;
   }
 

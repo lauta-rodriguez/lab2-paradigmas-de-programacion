@@ -8,10 +8,11 @@ public class Person extends NamedEntity {
 
   private static int frequency = 0;
 
-  public Person(String name, String category) {
-    super(name, category);
+  public Person(String name) {
+    super(name);
+    this.setCategory("Person");
+    this.setParentCategory("NamedEntity");
     frequency++;
-    System.out.println(name + category);
   }
 
   public static int getFrequency() {

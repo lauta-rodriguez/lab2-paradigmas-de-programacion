@@ -6,8 +6,10 @@ public class Place extends namedEntity.NamedEntity {
 
   private static int frequency = 0;
 
-  public Place(String name, String category) {
-    super(name, category);
+  public Place(String name) {
+    super(name);
+    this.setCategory("Place");
+    this.setParentCategory("NamedEntity");
     frequency++;
   }
 

@@ -7,8 +7,10 @@ public class Country extends Place {
 
   private static int frequency = 0;
 
-  public Country(String name, String category) {
-    super(name, category);
+  public Country(String name) {
+    super(name);
+    this.setCategory("Country");
+    this.setParentCategory("Place");
     frequency++;
   }
 

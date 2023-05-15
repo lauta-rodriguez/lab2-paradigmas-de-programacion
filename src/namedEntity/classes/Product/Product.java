@@ -6,8 +6,10 @@ public class Product extends namedEntity.NamedEntity {
 
   private static int frequency = 0;
 
-  public Product(String name, String category) {
-    super(name, category);
+  public Product(String name) {
+    super(name);
+    this.setCategory("Product");
+    this.setParentCategory("NamedEntity");
     frequency++;
   }
 

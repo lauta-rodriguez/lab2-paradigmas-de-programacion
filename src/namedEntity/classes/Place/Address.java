@@ -6,8 +6,10 @@ public class Address extends Place {
 
   private static int frequency = 0;
 
-  public Address(String name, String category) {
-    super(name, category);
+  public Address(String name) {
+    super(name);
+    this.setCategory("Address");
+    this.setParentCategory("Place");
     frequency++;
   }
 

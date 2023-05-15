@@ -7,8 +7,10 @@ public class Title extends Person {
 
   private static int frequency = 0;
 
-  public Title(String name, String category) {
-    super(name, category);
+  public Title(String name) {
+    super(name);
+    this.setCategory("Title");
+    this.setParentCategory("Person");
     frequency++;
   }
 

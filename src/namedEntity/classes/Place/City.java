@@ -8,8 +8,10 @@ public class City extends Place {
 
   private static int frequency = 0;
 
-  public City(String name, String category) {
-    super(name, category);
+  public City(String name) {
+    super(name);
+    this.setCategory("City");
+    this.setParentCategory("Place");
     frequency++;
   }
 

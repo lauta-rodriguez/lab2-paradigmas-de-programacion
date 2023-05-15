@@ -6,15 +6,16 @@ import topic.Topic;
 
 public class NamedEntity {
 	String name;
-	String category;
+	private String category = "Otros";
+	private String parentCategory = "Entidad Nombrada";
+
 	private static int frequency = 0;
 
 	Topic topic;
 
-	public NamedEntity(String name, String category) {
+	public NamedEntity(String name) {
 		super();
 		this.name = name;
-		this.category = category;
 		frequency++;
 	}
 
@@ -48,6 +49,14 @@ public class NamedEntity {
 
 	public void setTopic(Topic topic) {
 		this.topic = topic;
+	}
+
+	protected void setParentCategory(String parentCategory) {
+		this.parentCategory = parentCategory;
+	}
+
+	protected String getParentCategory() {
+		return this.parentCategory;
 	}
 
 	@Override
