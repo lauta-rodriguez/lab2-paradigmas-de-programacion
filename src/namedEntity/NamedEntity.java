@@ -69,7 +69,7 @@ public class NamedEntity {
 	}
 
 	public void prettyPrint() {
-		System.out.println(this.getName() + " " + getFrequency());
+		System.out.println(this.StringifyObject() + " " + this.getTopic().StringifyObject());
 	}
 
 }
