@@ -199,7 +199,7 @@ public class Article {
 		System.out
 				.println("**********************************************************************************************");
 		for (NamedEntity n : this.namedEntityList) {
-			n.prettyPrint();
+			System.out.println(n.StringifyObject() + " " + n.getTopic().StringifyObject());
 		}
 	}
 
