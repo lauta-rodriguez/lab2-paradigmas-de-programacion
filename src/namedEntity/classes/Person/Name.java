@@ -49,11 +49,6 @@ public class Name extends Person {
     this.variants = variants;
   }
 
-  @Override
-  public void prettyPrint() {
-    System.out.println("Person Name: " + this.getName() + " " + getFrequency());
-  }
-
   public String StringifyObject() {
 		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
 	}

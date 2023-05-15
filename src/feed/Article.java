@@ -175,10 +175,13 @@ public class Article {
 					ne.setTopic(t);
 
 					this.namedEntityList.add(ne);
+
 				} else { // si esta, incrementa su contador de ocurrencias
 					ne.incrementFrequency();
 					ne.getTopic().incrementFrequency();
 				}
+
+				ne.prettyPrint();
 			}
 		}
 	}
@@ -193,14 +196,6 @@ public class Article {
 		System.out
 				.println("**********************************************************************************************");
 
-	}
-
-	public void prettyPrintNamedEntities() {
-		System.out
-				.println("**********************************************************************************************");
-		for (NamedEntity n : this.namedEntityList) {
-			System.out.println(n.StringifyObject() + " " + n.getTopic().StringifyObject());
-		}
 	}
 
 	public static void main(String[] args) {

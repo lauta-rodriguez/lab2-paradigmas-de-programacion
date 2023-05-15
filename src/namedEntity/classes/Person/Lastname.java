@@ -40,11 +40,6 @@ public class Lastname extends Person {
     this.origin = origin;
   }
 
-  @Override
-  public void prettyPrint() {
-    System.out.println("Person Lastname: " + this.getName() + " " + getFrequency());
-  }
-
   public String StringifyObject() {
 		return ("[" + this.getName() + ": (" + this.getCategory() + ", " + getFrequency() + ") ");
 	}
