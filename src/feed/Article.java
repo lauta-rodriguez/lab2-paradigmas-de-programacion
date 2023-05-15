@@ -54,17 +54,17 @@ public class Article {
 	private static final Map<String, Class<? extends NamedEntity>> CATEGORY_CLASS_MAP = new HashMap<>();
 
 	static {
-		CATEGORY_CLASS_MAP.put("Apellido", Lastname.class);
-		CATEGORY_CLASS_MAP.put("Nombre", Name.class);
-		CATEGORY_CLASS_MAP.put("Titulo", Title.class);
-		CATEGORY_CLASS_MAP.put("Lugar", Place.class);
-		CATEGORY_CLASS_MAP.put("Ciudad", City.class);
-		CATEGORY_CLASS_MAP.put("Pais", Country.class);
-		CATEGORY_CLASS_MAP.put("Direccion", Address.class);
-		CATEGORY_CLASS_MAP.put("Organizacion", Organization.class);
-		CATEGORY_CLASS_MAP.put("Producto", Product.class);
-		CATEGORY_CLASS_MAP.put("Evento", Event.class);
-		CATEGORY_CLASS_MAP.put("Fecha", CDate.class);
+		CATEGORY_CLASS_MAP.put("Lastname", Lastname.class);
+		CATEGORY_CLASS_MAP.put("Name", Name.class);
+		CATEGORY_CLASS_MAP.put("Title", Title.class);
+		CATEGORY_CLASS_MAP.put("Place", Place.class);
+		CATEGORY_CLASS_MAP.put("City", City.class);
+		CATEGORY_CLASS_MAP.put("Country", Country.class);
+		CATEGORY_CLASS_MAP.put("Address", Address.class);
+		CATEGORY_CLASS_MAP.put("Organization", Organization.class);
+		CATEGORY_CLASS_MAP.put("Product", Product.class);
+		CATEGORY_CLASS_MAP.put("Event", Event.class);
+		CATEGORY_CLASS_MAP.put("CDate", CDate.class);
 	}
 
 	private static final Map<String, Class<? extends Topic>> TOPIC_CLASS_MAP = new HashMap<>();
