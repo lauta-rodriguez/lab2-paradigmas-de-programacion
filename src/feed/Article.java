@@ -135,8 +135,8 @@ public class Article {
 			NoSuchMethodException, SecurityException, ClassNotFoundException {
 
 		Class<? extends NamedEntity> action = CATEGORY_CLASS_MAP.getOrDefault(category, NamedEntity.class);
-		NamedEntity ne = action.getDeclaredConstructor(String.class, String.class)
-				.newInstance(namedEntity, category);
+		NamedEntity ne = action.getDeclaredConstructor(String.class)
+				.newInstance(namedEntity);
 
 		return ne;
 	}
