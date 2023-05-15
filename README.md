@@ -130,14 +130,20 @@ otra que a cada entidad nombrada la relaciona con un tema (Topic).
 
 Mostramos por pantalla el nombre de la entidad nombrada y dos tuplas que se corresponden con la primera y segunda jerarquía respectivamente, acompañadas de la cantidad de veces que aparece cada subclase (que representa el último nivel en su respectiva jerarquía) en el Feed.
 
-| Nombre     | Jerarquia basica |     Tema     |
-| ---------- | :--------------: | :----------: |
-| Week:      |   (Otros, 591)   | (Otros, 591) |
-| Trump:     |  (Lastname, 10)  | (Otros, 591) |
-| TV:        |   (Otros, 591)   | (Otros, 591) |
-| Inflation: |   (Otros, 591)   | (Otros, 591) |
-| Elon:      |   (Otros, 591)   | (Otros, 591) |
-| Musk:      |    (Name, 4)     | (Otros, 591) |
-| CEO:       |   (Otros, 591)   | (Otros, 591) |
-| Twitter:   |   (Otros, 591)   | (Otros, 591) |
-| Senate:    |   (Otros, 591)   | (Otros, 591) |
+```bash
+**********************************************************************************************
+Article: CNN’s Donald Trump Forum Was a Preview of Political Coverage to Come
+[CNN’s: (Other, 491)  (Other, 491)]
+[Donald: (Other, 492)  (Other, 492)]
+[Trump: (Lastname, 8)  (National, 8)]
+[Forum: (Other, 494)  (Other, 494)]
+[Preview: (Other, 495)  (Other, 495)]
+[Political: (Other, 496)  (Other, 496)]
+[Coverage: (Other, 497)  (Other, 497)]
+[Come: (Other, 498)  (Other, 498)]
+[Criticized: (Other, 499)  (Other, 499)]
+[Donald: (Other, 500)  (Other, 500)]
+[Trump: (Lastname, 9)  (National, 9)]
+[CNN: (Other, 502)  (Other, 502)]
+**********************************************************************************************
+```
